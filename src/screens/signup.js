@@ -47,7 +47,7 @@ export default function Signup() {
       if (response.ok) {
         const data = await response.json();
         console.log(data); // Handle success response
-        navigate('/');
+        navigate('/home');
         alert('Yay! Your Account has been Created Successful.');
       } else if (response.status === 409) {
         alert('User already exists, Login now'); // User exists alert
@@ -209,7 +209,7 @@ export default function Signup() {
                   Password
                 </label>
                 <div className="text-sm">
-                  <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                  <a href="#" className="font-semibold text-blue-600 hover:text-blue-500">
                     Forgot password?
                   </a>
                 </div>
@@ -230,11 +230,11 @@ export default function Signup() {
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="flex w-full justify-center rounded-md bg-blue-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
               >
                 Create Now
               </button>
-              <p className='block text-sm font-medium leading-6 text-gray-900 py-2'>Already have an account?<Link to="/" className='font-semibold text-indigo-600'> Log in now</Link></p>
+              <p className='block text-sm font-medium leading-6 text-gray-900 py-2'>Already have an account?<Link to="/" className='font-semibold text-blue-600'> Log in now</Link></p>
             </div>
           </form>
           <p className="mt-5 mb-3 text-body-secondary">© {currentYear}, All rights reserved</p>

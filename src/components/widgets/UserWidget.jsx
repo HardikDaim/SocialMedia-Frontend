@@ -45,97 +45,155 @@ const UserWidget = ({ userId, picturePath }) => {
   } = user;
 
   return (
-    <WidgetWrapper className="">
-      {/* FIRST ROW */}
-      <FlexBetween
-        gap="0.5rem"
-        pb="1.1rem"
-        onClick={() => navigate(`/profile/${userId}`)}
-      >
-        <FlexBetween gap="1rem">
-          <UserImage image={picturePath} />
-          <Box>
-            <Typography
-              variant="h4"
-              fontWeight="500"
-              sx={{
-                "&:hover": {
-                  cursor: "pointer",
-                },
-              }}
-            >
-              {firstName} {lastName}
-            </Typography>
-            <Typography>
-              <Typography>
+    <>
+      <div  onClick={() => navigate(`/profile/${userId}`)} className="p-5 bg-white sticky top-5 max-w-full border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-700 dark:border-gray-800 dark:hover:bg-gray-700 user-select-none">
+        <div className="flex gap-x-1 pb-5 select-none">
+          <UserImage image={picturePath} className={`select-none w-16 h-16 cursor-pointer`} />
+          <div className="dark:text-white text-3xl font-semibold cursor-pointer select-none">
+            {firstName} {lastName}
+            <sub className="ml-6 select-none">
+              {" "}
+              <div className="dark:text-white text-sm cursor-pointer select-none">
                 {friends.length === 1
-                  ? "1 Expert in Touch"
-                  : `${friends.length} Experts in Touch`}
-              </Typography>
-            </Typography>
-          </Box>
-        </FlexBetween>
-        <ManageAccountsOutlined />
-      </FlexBetween>
+                  ? "1 Friend in Touch"
+                  : `${friends.length} Friends in Touch`}
+              </div>
+            </sub>
+          </div>
+        </div>
+        <hr className="border border-gray-300 dark:border-gray-600 "></hr>
+        <div className="p-2">
+          <div className="flex align-items-center gap-1 my-3">
+          <div className="text-lg dark:text-white select-none">Location:</div>
 
-      <Divider />
+            <div className="text-lg font-semibold dark:text-white select-none">
+              {location}
+            </div>
+          </div>
+          <div className="flex align-items-center gap-1 my-3">
+          <div className="text-lg dark:text-white select-none">Occupation</div>
+            <div className="text-lg font-semibold  dark:text-white select-none">
+              {occupation}
+            </div>
+          </div>
+          <div className="flex align-items-center gap-1 my-3">
+            <div className="text-lg dark:text-white select-none ">Profile Viewed:</div>
+            <div className="text-lg font-semibold  dark:text-white select-none">
+              {viewedProfile}
+            </div>
+          </div>
+          <div className="flex align-items-center gap-1 my-3">
+            <div className="text-lg dark:text-white select-none">Post Impressions:</div>
+            <div className="text-lg font-semibold  dark:text-white select-none">
+              {impressions}
+            </div>
+          </div>          
+        </div>
+      </div>
+
+      {/* <WidgetWrapper className="sticky top-0">
+        {/* FIRST ROW */}
+      {/* <FlexBetween
+          gap="0.5rem"
+          pb="1.1rem"
+          onClick={() => navigate(`/profile/${userId}`)}
+        >
+          <FlexBetween gap="1rem">
+            <UserImage image={picturePath} />
+            <Box>
+              <Typography
+                variant="h4"
+                fontWeight="500"
+                sx={{
+                  "&:hover": {
+                    cursor: "pointer",
+                  },
+                }}
+              >
+                {firstName} {lastName}
+              </Typography>
+              <Typography>
+                <Typography>
+                  {friends.length === 1
+                    ? "1 Expert in Touch"
+                    : `${friends.length} Experts in Touch`}
+                </Typography>
+              </Typography>
+            </Box>
+          </FlexBetween>
+          <ManageAccountsOutlined />
+        </FlexBetween>
+
+        <Divider /> */}
 
       {/* SECOND ROW */}
-      <Box p="1rem 0">
-        <Box display="flex" alignItems="center" gap="1rem" mb="0.5rem">
-          <LocationOnOutlined fontSize="large" />
-          <Typography>{location}</Typography>
+      {/* <Box p="1rem 0">
+          <Box display="flex" alignItems="center" gap="1rem" mb="0.5rem">
+            <LocationOnOutlined fontSize="large" />
+            <Typography>{location}</Typography>
+          </Box>
+          <Box display="flex" alignItems="center" gap="1rem">
+            <WorkOutlineOutlined fontSize="large" />
+            <Typography>{occupation}</Typography>
+          </Box>
         </Box>
-        <Box display="flex" alignItems="center" gap="1rem">
-          <WorkOutlineOutlined fontSize="large" />
-          <Typography>{occupation}</Typography>
-        </Box>
-      </Box>
 
-      <Divider />
+        <Divider /> */}
 
       {/* THIRD ROW */}
-      <Box p="1rem 0">
-        <FlexBetween mb="0.5rem">
-          <Typography>Who's viewed your profile</Typography>
-          <Typography fontWeight="500">{viewedProfile}</Typography>
-        </FlexBetween>
-        <FlexBetween>
-          <Typography>Impressions of your post</Typography>
-          <Typography fontWeight="500">{impressions}</Typography>
-        </FlexBetween>
-      </Box>
+      {/* <Box p="1rem 0">
+          <FlexBetween mb="0.5rem">
+            <Typography>Who's viewed your profile</Typography>
+            <Typography fontWeight="500">{viewedProfile}</Typography>
+          </FlexBetween>
+          <FlexBetween>
+            <Typography>Impressions of your post</Typography>
+            <Typography fontWeight="500">{impressions}</Typography>
+          </FlexBetween>
+        </Box>
 
-      <Divider />
+        <Divider /> */}
 
       {/* FOURTH ROW */}
-      <Box p="1rem 0">
-        <Typography fontSize="1rem" fontWeight="500" mb="1rem">
-          Social Profiles
-        </Typography>
+      {/* <Box p="1rem 0">
+          <Typography fontSize="1rem" fontWeight="500" mb="1rem">
+            Social Profiles
+          </Typography>
 
-        <FlexBetween gap="1rem" mb="0.5rem">
-          <FlexBetween gap="1rem">
-          <img width="48" height="48" src="https://img.icons8.com/color/48/facebook.png" alt="facebook"/>
-            <Box>
-              <Typography fontWeight="500">Facebook</Typography>
-              <Typography>Social Network</Typography>
-            </Box>
-          </FlexBetween>
-          <EditOutlined />
-        </FlexBetween>
+          <FlexBetween gap="1rem" mb="0.5rem">
+            <FlexBetween gap="1rem">
+              <img
+                width="48"
+                height="48"
+                src="https://img.icons8.com/color/48/facebook.png"
+                alt="facebook"
+              />
+              <Box>
+                <Typography fontWeight="500">Facebook</Typography>
+                <Typography>Social Network</Typography>
+              </Box>
+            </FlexBetween>
+            <EditOutlined />
+          </FlexBetween> */}
 
-        <FlexBetween gap="1rem">
-          <FlexBetween gap="1rem">
-          <img width="48" height="48" src="https://img.icons8.com/fluency/48/instagram-new.png" alt="instagram-new"/>            <Box>
-              <Typography fontWeight="500">Instagram</Typography>
-              <Typography>Network Platform</Typography>
-            </Box>
+      {/* <FlexBetween gap="1rem">
+            <FlexBetween gap="1rem">
+              <img
+                width="48"
+                height="48"
+                src="https://img.icons8.com/fluency/48/instagram-new.png"
+                alt="instagram-new"
+              />{" "}
+              <Box>
+                <Typography fontWeight="500">Instagram</Typography>
+                <Typography>Network Platform</Typography>
+              </Box>
+            </FlexBetween>
+            <EditOutlined />
           </FlexBetween>
-          <EditOutlined />
-        </FlexBetween>
-      </Box>
-    </WidgetWrapper>
+        </Box>
+      </WidgetWrapper>  */}
+    </>
   );
 };
 

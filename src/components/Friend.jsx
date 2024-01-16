@@ -14,12 +14,11 @@ import { setFriends, deletePost } from "../state/index.js";
 import FlexBetween from "./FlexBetween";
 import UserImage from "./UserImage";
 import Modal from "@mui/material/Modal";
-import Slide from '@mui/material/Slide';
+import Slide from "@mui/material/Slide";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-
 
 const style = {
   position: "absolute",
@@ -125,15 +124,21 @@ const Friend = ({ friendId, name, subtitle, userPicturePath, postId }) => {
         {friendId !== _id ? (
           <IconButton onClick={() => patchFriend()}>
             {isFriend ? (
-              <PersonRemoveOutlinedIcon />
+              <div className="dark:text-white">
+                <PersonRemoveOutlinedIcon />
+              </div>
             ) : (
-              <PersonAddOutlinedIcon />
+              <div className="dark:text-white">
+                <PersonAddOutlinedIcon />
+              </div>
             )}
           </IconButton>
         ) : null}
 
         <IconButton onClick={handleMenuClick}>
-          <MoreVertOutlinedIcon />
+          <div className="dark:text-white">
+            <MoreVertOutlinedIcon />
+          </div>
         </IconButton>
         <Menu
           anchorEl={anchorEl}

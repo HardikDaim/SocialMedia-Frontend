@@ -12,8 +12,8 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "../../state/index.js";
 import TextField from "@mui/material/TextField";
-import SendIcon from '@mui/icons-material/Send';
-import { addComment } from "../../state/index.js"; 
+import SendIcon from "@mui/icons-material/Send";
+import { addComment } from "../../state/index.js";
 
 const PostWidget = ({
   postId,
@@ -50,7 +50,7 @@ const PostWidget = ({
 
   const handleCommentSubmit = async () => {
     if (!commentText.trim()) return; // Don't submit empty comments
-  
+
     const response = await fetch(
       `http://localhost:4000/posts/${postId}/comment`,
       {
@@ -62,7 +62,7 @@ const PostWidget = ({
         body: JSON.stringify({ userId: loggedInUserId, text: commentText }),
       }
     );
-  
+
     if (response.ok) {
       const newComment = await response.json();
       // Dispatch the addComment action to update the Redux store
@@ -70,83 +70,143 @@ const PostWidget = ({
       console.log("New Comment:", newComment);
       // Clear the comment input
       setCommentText("");
-     
     } else {
       // Handle error response from the server
       console.error("Failed to create a comment.");
     }
   };
-  
+
   return (
-    <WidgetWrapper m="2rem 0">
+    <>
+      <div className="p-5 my-6 bg-white max-w-full border border-gray-200 rounded-lg shadow dark:bg-gray-700 dark:border-gray-800 dark:hover:bg-gray-700 user-select-none">
+      <div className="dark:text-white select-none">
       <Friend
-        friendId={postUserId}
-        name={name}
-        subtitle={location}
-        userPicturePath={userPicturePath}
-        postId={postId}
-      />
-      <Typography sx={{ mt: "1rem" }}>{description}</Typography>
+            friendId={postUserId}
+            name={name}
+            subtitle={location}
+            userPicturePath={userPicturePath}
+            postId={postId}
+          />
+      </div>
+      <div className="m-4 dark:text-white select-none">{description}</div>
       {picturePath && (
         <img
           width="100%"
-          height="auto"
-          alt="post"
-          style={{ borderRadius: "0.75rem", marginTop: "0.75rem" }}
+          height="100%"
+          alt="Post"
+          className="rounded-lg mt-2"
           src={`http://localhost:4000/assets/${picturePath}`}
         />
       )}
-      <FlexBetween mt="0.25rem">
-        <FlexBetween gap="1rem">
-          <FlexBetween gap="0.3rem">
+      <div className="mt-4">
+        <div className="grid grid-cols-5">
+          <div>
             <IconButton onClick={patchLike}>
-              {isLiked ? <FavoriteOutlined /> : <FavoriteBorderOutlined />}
+              <div className="dark:text-white">
+                {isLiked ? <FavoriteOutlined /> : <FavoriteBorderOutlined />}
+              </div>
+              <div className="dark:text-white text-2xl ml-2">{likeCount}</div>
             </IconButton>
-            <Typography>{likeCount}</Typography>
-          </FlexBetween>
-
-          <FlexBetween gap="0.3rem">
+          </div>
+          <div>
             <IconButton onClick={() => setIsComments(!isComments)}>
-              <ChatBubbleOutlineOutlined />
+              <div className="dark:text-white">
+                <ChatBubbleOutlineOutlined />
+              </div>
+              <div className="dark:text-white text-2xl ml-2">
+                {comments ? comments.length : 0}
+              </div>
             </IconButton>
-            <Typography>{comments ? comments.length : 0}</Typography>
-          </FlexBetween>
-        </FlexBetween>
+          </div>
+          <div>
+            <IconButton>
+              <div className="dark:text-white">
+                <ShareOutlined />
+              </div>
+              <div className="dark:text-white text-2xl ml-2">
+                {comments ? comments.length : 0}
+              </div>
+            </IconButton>
+          </div>
+          <div className="col-span-2">
+          <input
+            type="text"
+            className="w-full rounded-full p-4 bg-gray-100 dark:bg-gray-800"
+            placeholder="Write your Comment"
+          ></input>
+          </div>
+        </div>
+      </div>
+    </div>
+      {/* <WidgetWrapper m="2rem 0">
+        <Friend
+          friendId={postUserId}
+          name={name}
+          subtitle={location}
+          userPicturePath={userPicturePath}
+          postId={postId}
+        />
+        <Typography sx={{ mt: "1rem" }}>{description}</Typography>
+        {picturePath && (
+          <img
+            width="100%"
+            height="auto"
+            alt="post"
+            style={{ borderRadius: "0.75rem", marginTop: "0.75rem" }}
+            src={`http://localhost:4000/assets/${picturePath}`}
+          />
+        )}
+        <FlexBetween mt="0.25rem">
+          <FlexBetween gap="1rem">
+            <FlexBetween gap="0.3rem">
+              <IconButton onClick={patchLike}>
+                {isLiked ? <FavoriteOutlined /> : <FavoriteBorderOutlined />}
+              </IconButton>
+              <Typography>{likeCount}</Typography>
+            </FlexBetween>
 
-        <IconButton>
-          <ShareOutlined />
-        </IconButton>
-      </FlexBetween>
-      {isComments && (
-       <Box mt="0.5rem">
-       {comments.map((comment, i) => (
-         <div key={`${comment.userId}-${i}`}>
-           <Divider />
-           <Typography sx={{ m: "0.5rem 0", pl: "1rem" }}>
-             {comment.text}
-           </Typography>
-         </div>
-       ))}
-       <Divider />
-       <Box display="flex" alignItems="center">
-         <TextField
-           label="Write a comment"
-           variant="outlined"
-           fullWidth
-           value={commentText}
-           onChange={(e) => setCommentText(e.target.value)}
-         />
-         <div
-           onClick={handleCommentSubmit}
-           style={{ marginLeft: "8px", cursor: "pointer" }}
-         >
-           <SendIcon />
-         </div>
-       </Box>
-     </Box>
-     
-      )}
-    </WidgetWrapper>
+            <FlexBetween gap="0.3rem">
+              <IconButton onClick={() => setIsComments(!isComments)}>
+                <ChatBubbleOutlineOutlined />
+              </IconButton>
+              <Typography>{comments ? comments.length : 0}</Typography>
+            </FlexBetween>
+          </FlexBetween>
+
+          <IconButton>
+            <ShareOutlined />
+          </IconButton>
+        </FlexBetween>
+        {isComments && (
+          <Box mt="0.5rem">
+            {comments.map((comment, i) => (
+              <div key={`${comment.userId}-${i}`}>
+                <Divider />
+                <Typography sx={{ m: "0.5rem 0", pl: "1rem" }}>
+                  {comment.text}
+                </Typography>
+              </div>
+            ))}
+            <Divider />
+            <Box display="flex" alignItems="center">
+              <TextField
+                label="Write a comment"
+                variant="outlined"
+                fullWidth
+                value={commentText}
+                onChange={(e) => setCommentText(e.target.value)}
+              />
+              <div
+                onClick={handleCommentSubmit}
+                style={{ marginLeft: "8px", cursor: "pointer" }}
+              >
+                <SendIcon />
+              </div>
+            </Box>
+          </Box>
+        )}
+      </WidgetWrapper> */}
+    </>
   );
 };
 

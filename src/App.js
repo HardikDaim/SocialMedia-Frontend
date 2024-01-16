@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Home from "./screens/home";
 import {
   BrowserRouter as Router,
   Routes,
-  Navigate,
   Route,
+  Navigate,
 } from "react-router-dom";
+import TransitionRoutes from "./TransitionRoutes";
 import Login from "./screens/login";
 import Signup from "./screens/signup";
 import About from "./screens/about";
@@ -13,29 +14,39 @@ import Services from "./screens/services";
 import Contact from "./screens/contact";
 import Profile from "./screens/profile";
 import { useSelector } from "react-redux";
+import NewPost from "./components/newPost";
 
 function App() {
-  const isAuth = Boolean(useSelector((state) => state.token));
+  const isLoggedIn = useSelector((state) => state.token !== null);
+  const [locationKey, setLocationKey] = useState(null);
+
+  useEffect(() => {
+    setLocationKey(Date.now());
+  }, [window.location.pathname]);
+
   return (
     <Router>
-      <div>
+      <TransitionRoutes key={locationKey}>
         <Routes>
-          <Route exact path="/" element={<Login />} />
           <Route
-            exact
-            path="/home"
-            element={isAuth ? <Home /> : <Navigate to="/" />}
+            path="/"
+            element={isLoggedIn ? <Navigate to="/home" /> : <Login />}
           />
-          <Route exact path="/about" element={<About />} />
-          <Route exact path="/services" element={<Services />} />
-          <Route exact path="/contact" element={<Contact />} />
+          <Route
+            path="/home"
+            element={isLoggedIn ? <Home /> : <Navigate to="/" />}
+          />
+          <Route path="/about" element={<About />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/contact" element={<Contact />} />
           <Route
             path="/profile/:userId"
-            element={isAuth ? <Profile /> : <Navigate to="/" />}
+            element={isLoggedIn ? <Profile /> : <Navigate to="/" />}
           />
-          <Route exact path="/signup" element={<Signup />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/newPost" element={<NewPost />} />
         </Routes>
-      </div>
+      </TransitionRoutes>
     </Router>
   );
 }
