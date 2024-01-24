@@ -28,9 +28,9 @@ const FriendListWidget = ({ userId }) => {
 
   return (
     <>
-      <div className="p-5 bg-white sticky top-5 max-w-full border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-700 dark:border-gray-800 dark:hover:bg-gray-700 user-select-none">
+      <div className="p-5 bg-white max-w-full border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-700 dark:border-gray-800 dark:hover:bg-gray-700 user-select-none">
         <div className="flex gap-x-1 pb-5 select-none">
-          <div className="dark:text-white text-3xl font-semibold cursor-pointer select-none ">
+          <div className="dark:text-white text-3xl font-medium cursor-pointer select-none ">
             Your Friends List
           </div>
         </div>

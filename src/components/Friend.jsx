@@ -150,6 +150,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath, postId }) => {
             Delete
           </MenuItem>
           <Modal
+          className="backdrop-blur-md"
             open={open}
             TransitionComponent={Transition}
             keepMounted
@@ -165,17 +166,17 @@ const Friend = ({ friendId, name, subtitle, userPicturePath, postId }) => {
               <div
                 onClick={handleDelete}
                 type="button"
-                className="position-relative justify-center border-indigo-600 border-1 rounded-md  px-3 my-3 mx-3 py-1.5 text-sm font-semibold leading-6 text-indigo-600 shadow-sm hover:text-white hover:bg-indigo-600  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="position-relative shadow-2xl rounded-2xl  justify-center border-blue-600 border-2  rounded-md  px-3 my-3 mx-3 py-1.5 text-sm font-medium leading-6 text-blue-600 shadow-sm hover:text-white hover:bg-blue-600  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
               >
-                Yes, Delete
+                Yes, Delete this Post Immediately
                 <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"></span>
               </div>
               <div
                 onClick={handleClose}
                 type="button"
-                className="position-relative justify-center border-indigo-600 border-1 rounded-md  px-3 mx-3 py-1.5 text-sm font-semibold leading-6 text-indigo-600 shadow-sm hover:text-white hover:bg-indigo-600  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="position-relative  shadow-2xl rounded-2xl justify-center border-blue-600 border-2 rounded-md  px-3 my-3 mx-3 py-1.5 text-sm font-medium leading-6 text-blue-600 shadow-sm hover:text-white hover:bg-blue-600  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
               >
-                Cancel
+                No, I've changed by Decision
                 <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"></span>
               </div>
             </Box>

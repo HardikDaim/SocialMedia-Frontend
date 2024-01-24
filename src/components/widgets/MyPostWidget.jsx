@@ -59,7 +59,7 @@ const MyPostWidget = ({ picturePath }) => {
 
   return (
     <>
-      <div  className="px-5 pt-5 bg-white dark:bg-gray-800 max-w-full border border-gray-200 rounded-lg shadow  dark:bg-gray-800 dark:border-gray-700  user-select-none">
+      <div  className="px-5 mt-2 pt-5 bg-white dark:bg-gray-800 max-w-full border border-gray-200 rounded-lg shadow  dark:bg-gray-800 dark:border-gray-700  user-select-none">
         <div className="flex gap-x-1 pb-5 select-none">
           <UserImage image={picturePath} className={`select-none w-16 h-16`} />
           <input
@@ -71,22 +71,22 @@ const MyPostWidget = ({ picturePath }) => {
         </div>
         <hr className="border border-gray-300 dark:border-gray-700 "></hr>
         <div className="grid grid-cols-4 my-2 divide-x-4 divide-gray-300 dark:divide-gray-700 ">
-          <div onClick={() =>  navigate("/newPost")} className="flex items-center justify-center dark:text-white p-2 text-sm md:text-lg md:p-4 cursor-pointer select-none">
+          <div onClick={() =>  navigate("/newPost")} className="flex items-center justify-center dark:text-white p-2 text-xs md:text-lg md:p-4 cursor-pointer select-none">
             <img className="h-5 w-10 md:h-10 md:w-20" src="/live.svg" alt="Live Icon" />
             <span>Go Live</span>
           </div>
 
-          <div onClick={() =>  navigate("/newPost")} className="flex items-center justify-center dark:text-white p-2 text-sm md:text-lg md:p-4 cursor-pointer select-none">
+          <div onClick={() =>  navigate("/newPost")} className="flex items-center justify-center dark:text-white p-2 text-xs md:text-lg md:p-4 cursor-pointer select-none">
             <img className="h-5 w-10 md:h-10 md:w-20 " src="/photo.svg" alt="Photo Icon" />
             <span>Photo</span>
           </div>
 
-          <div onClick={() =>  navigate("/newPost")} className="flex items-center justify-center dark:text-white p-2 text-sm md:text-lg md:p-4 cursor-pointer select-none">
+          <div onClick={() =>  navigate("/newPost")} className="flex items-center justify-center dark:text-white p-2 text-xs md:text-lg md:p-4 cursor-pointer select-none">
             <img className="h-5 w-10 md:h-10 md:w-20 " src="/video.svg" alt="Video Icon" />
             <span>Video</span>
           </div>
 
-          <div onClick={() =>  navigate("/newPost")} className="flex items-center justify-center dark:text-white p-2 text-sm md:text-lg md:p-4 cursor-pointer select-none">
+          <div onClick={() =>  navigate("/newPost")} className="flex items-center justify-center dark:text-white p-2 text-xs md:text-lg md:p-4 cursor-pointer select-none">
             <img
               className="h-5 w-10 md:h-10 md:w-20 "
               src="/feeling.svg"

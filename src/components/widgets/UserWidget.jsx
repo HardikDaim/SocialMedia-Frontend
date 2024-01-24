@@ -46,10 +46,10 @@ const UserWidget = ({ userId, picturePath }) => {
 
   return (
     <>
-      <div  onClick={() => navigate(`/profile/${userId}`)} className="p-5 bg-white sticky top-5 max-w-full border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-700 dark:border-gray-800 dark:hover:bg-gray-700 user-select-none">
+      <div  onClick={() => navigate(`/profile/${userId}`)} className="p-5 bg-white  max-w-full border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-700 dark:border-gray-800 dark:hover:bg-gray-700 user-select-none">
         <div className="flex gap-x-1 pb-5 select-none">
           <UserImage image={picturePath} className={`select-none w-16 h-16 cursor-pointer`} />
-          <div className="dark:text-white text-3xl font-semibold cursor-pointer select-none">
+          <div className="dark:text-white text-3xl font-medium cursor-pointer select-none">
             {firstName} {lastName}
             <sub className="ml-6 select-none">
               {" "}
@@ -66,25 +66,25 @@ const UserWidget = ({ userId, picturePath }) => {
           <div className="flex align-items-center gap-1 my-3">
           <div className="text-lg dark:text-white select-none">Location:</div>
 
-            <div className="text-lg font-semibold dark:text-white select-none">
+            <div className="text-lg font-medium dark:text-white select-none">
               {location}
             </div>
           </div>
           <div className="flex align-items-center gap-1 my-3">
           <div className="text-lg dark:text-white select-none">Occupation</div>
-            <div className="text-lg font-semibold  dark:text-white select-none">
+            <div className="text-lg font-medium  dark:text-white select-none">
               {occupation}
             </div>
           </div>
           <div className="flex align-items-center gap-1 my-3">
             <div className="text-lg dark:text-white select-none ">Profile Viewed:</div>
-            <div className="text-lg font-semibold  dark:text-white select-none">
+            <div className="text-lg font-medium  dark:text-white select-none">
               {viewedProfile}
             </div>
           </div>
           <div className="flex align-items-center gap-1 my-3">
             <div className="text-lg dark:text-white select-none">Post Impressions:</div>
-            <div className="text-lg font-semibold  dark:text-white select-none">
+            <div className="text-lg font-medium  dark:text-white select-none">
               {impressions}
             </div>
           </div>          

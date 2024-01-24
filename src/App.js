@@ -15,6 +15,8 @@ import Contact from "./screens/contact";
 import Profile from "./screens/profile";
 import { useSelector } from "react-redux";
 import NewPost from "./components/newPost";
+import { Bounce, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const isLoggedIn = useSelector((state) => state.token !== null);
@@ -26,6 +28,7 @@ function App() {
 
   return (
     <Router>
+      <ToastContainer />
       <TransitionRoutes key={locationKey}>
         <Routes>
           <Route

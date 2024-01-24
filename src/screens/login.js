@@ -1,42 +1,37 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import Navbar from '../components/navbar';
-import Footer from '../components/footer';
-import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Navbar from "../components/navbar";
+import Footer from "../components/footer";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { setLogin } from "../state/index.js";
 import { useDispatch } from "react-redux";
-import Dropzone from "react-dropzone";
-
-const currentYear = new Date().getFullYear();
-
+import { ToastContainer, toast , Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [credentials, setCredentials] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
-  const [showAlert, setShowAlert] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:4000/auth/login', {
-        method: 'POST',
+      const response = await fetch("http://localhost:4000/auth/login", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email: credentials.email, password: credentials.password }),
+        body: JSON.stringify({
+          email: credentials.email,
+          password: credentials.password,
+        }),
       });
       const loggedIn = await response.json();
       if (response.ok) {
-        // const data = await response.json();
-        console.log(loggedIn); // Handle success response
-        // localStorage.setItem('userEmail', credentials.email);
-        // localStorage.setItem('token', data.token);
         dispatch(
           setLogin({
             user: loggedIn.user,
@@ -44,15 +39,36 @@ export default function Login() {
           })
         );
 
-
-        // Set showAlert to true to show the Bootstrap modal
-        alert("Login Successful")
-        navigate('/home');
+        // Show success notification using react-toastify
+        toast.success("Login Successful", {
+          position: "bottom-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "light",
+          transition: Bounce,
+          
+        });
+        navigate('/home')
+       
       } else {
-        throw new Error('Failed to login user');
+        throw new Error(loggedIn.msg || "Failed to login user");
       }
     } catch (error) {
       console.error(error); // Handle error
+      toast.error(`⚠️ ${error.message}`, {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+        transition: Bounce,
+        
+      });
     }
   };
 
@@ -62,13 +78,14 @@ export default function Login() {
 
   return (
     <>
+    <ToastContainer />
       <Navbar />
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+      <div className="flex flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
-            className="mx-auto h-10 w-auto "
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-            alt="Your Company"
+            className="mx-auto  w-auto "
+            src="/connectify.png"
+            alt="Connectify"
           />
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Log in to your account
@@ -78,7 +95,10 @@ export default function Login() {
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
-              <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
                 Email address
               </label>
               <div className="mt-2">
@@ -97,11 +117,17 @@ export default function Login() {
 
             <div>
               <div className="flex items-center justify-between">
-                <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
                   Password
                 </label>
                 <div className="text-sm ">
-                  <a href="#" className="font-semibold text-blue-600 hover:text-blue-500">
+                  <a
+                    href="#"
+                    className="font-semibold text-blue-600 hover:text-blue-500"
+                  >
                     Forgot password?
                   </a>
                 </div>
@@ -128,35 +154,19 @@ export default function Login() {
                 Log in
               </button>
               <p className="block text-sm font-medium leading-6 text-gray-900 py-2">
-                Don't have an account?<Link to="/signup" className="font-semibold text-blue-600"> Sign up now</Link>
+                Don't have an account?
+                <Link to="/signup" className="font-semibold text-blue-600">
+                  {" "}
+                  Sign up now
+                </Link>
               </p>
             </div>
           </form>
         </div>
-
-        {/* Bootstrap Modal for Custom Alert */}
-        {showAlert && (
-          <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div className="modal-dialog modal-dialog-centered" role="document">
-              <div className="modal-content">
-                <div className="modal-header">
-                  <h5 className="modal-title" id="exampleModalLongTitle">Login Successful</h5>
-                  <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={() => setShowAlert(false)}>
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div className="modal-body">
-                  Your login was successful.
-                </div>
-                <div className="modal-footer">
-                  <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={() => setShowAlert(false)}>Close</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
       </div>
+
+
+
       <Footer />
     </>
   );

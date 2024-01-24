@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
-import * as yup from 'yup';
 import { useDispatch } from 'react-redux';
 import Dropzone from 'react-dropzone';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
@@ -14,6 +13,8 @@ import {
   Typography,
   useTheme,
 } from '@mui/material';
+import { ToastContainer, toast , Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const currentYear = new Date().getFullYear();
 
@@ -37,28 +38,61 @@ export default function Signup() {
       formData.append(value, credentials[value]);
     }
     formData.append('picturePath', credentials.picture.name);
-
+  
     try {
       const response = await fetch('http://localhost:4000/auth/register', {
         method: 'POST',
         body: formData,
       });
-
+  
       if (response.ok) {
         const data = await response.json();
         console.log(data); // Handle success response
+        toast.success(data.msg || "Register Successful", {
+          position: "bottom-right",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "light",
+          transition: Bounce,
+        });
         navigate('/home');
-        alert('Yay! Your Account has been Created Successful.');
+      
+  
       } else if (response.status === 409) {
         alert('User already exists, Login now'); // User exists alert
       } else {
-        alert('Enter correct E-mail ID or Password');
+        const errorData = await response.json();
+        // alert(errorData.msg || 'Enter correct E-mail ID or Password');
+        toast.error(errorData.msg, {
+          position: "bottom-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "light",
+          transition: Bounce,
+        });
         throw new Error('Failed to create user');
       }
     } catch (error) {
       console.error(error); // Handle error
+      toast.error(`⚠️ ${error.message}`, {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+        transition: Bounce,
+      });
     }
   };
+  
 
   const onChange = (e) => {
     if (e.target.name === 'picture') {
@@ -71,15 +105,16 @@ export default function Signup() {
 
   return (
     <>
+    <ToastContainer  />
       <Navbar />
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
-            className="mx-auto h-10 w-auto"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-            alt="Your Company"
+            className="mx-auto  w-auto"
+            src="/connectify.png"
+            alt="Connectify"
           />
-          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+          <h2 className=" text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Create your account
           </h2>
         </div>
@@ -237,7 +272,7 @@ export default function Signup() {
               <p className='block text-sm font-medium leading-6 text-gray-900 py-2'>Already have an account?<Link to="/" className='font-semibold text-blue-600'> Log in now</Link></p>
             </div>
           </form>
-          <p className="mt-5 mb-3 text-body-secondary">© {currentYear}, All rights reserved</p>
+          <p className="mt-5 mb-3 text-body-secondary flex justify-center">© {currentYear}, All rights reserved</p>
         </div>
       </div>
       <Footer />

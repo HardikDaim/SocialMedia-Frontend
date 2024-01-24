@@ -2,13 +2,8 @@ import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setLogout } from "../state/index";
-import CottageTwoToneIcon from "@mui/icons-material/CottageTwoTone";
-import InfoTwoToneIcon from "@mui/icons-material/InfoTwoTone";
-import MedicalInformationTwoToneIcon from "@mui/icons-material/MedicalInformationTwoTone";
-import ContactMailTwoToneIcon from "@mui/icons-material/ContactMailTwoTone";
-import Person4TwoToneIcon from "@mui/icons-material/Person4TwoTone";
+
 import Tooltip from "@mui/material/Tooltip";
-import UserImage from "./UserImage";
 
 export default function Navbar({ picturePath }) {
   const navigate = useNavigate();
@@ -22,52 +17,26 @@ export default function Navbar({ picturePath }) {
 
   return (
     <>
-      <header className="py-10 shadow-md bg-white dark:bg-gray-800 w-full border border-gray-300 dark:border-gray-700 ">
+      <div className="sticky top-0 z-40  shadow-md bg-white dark:bg-gray-800 w-full border border-gray-300 dark:border-gray-700">
         <div className="mx-auto max-w-full px-4 sm:px-6 lg:px-8">
-          <nav className="relative flex justify-between">
+          <nav className="flex justify-between items-center">
             <NavLink
               to="/home"
-              className="flex items-center md:gap-x-12 mr-7 cursor-pointer"
+              className="flex items-center gap-x-2 cursor-pointer "
             >
-              <svg
-                aria-hidden="true"
-                viewBox="0 0 109 40"
-                className="h-10 w-auto"
-              >
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M0 20c0 11.046 8.954 20 20 20s20-8.954 20-20S31.046 0 20 0 0 8.954 0 20Zm20 16c-7.264 0-13.321-5.163-14.704-12.02C4.97 22.358 6.343 21 8 21h24c1.657 0 3.031 1.357 2.704 2.98C33.32 30.838 27.264 36 20 36Z"
-                  fill="#2563EB"
-                ></path>
-
-                <path
-                  d="M55.528 26.57V15.842H52V13.97h9.108v1.872h-3.636V26.57h-1.944Z"
-                  fill="#0F172A"
-                ></path>
-                <path
-                  d="M83.084 26.57v-12.6h5.346c.744 0 1.416.18 2.016.54a3.773 3.773 0 0 1 1.44 1.44c.36.612.54 1.302.54 2.07 0 .78-.18 1.482-.54 2.106a4 4 0 0 1-1.44 1.494c-.6.36-1.272.54-2.016.54h-2.646v4.41h-2.7Zm2.664-6.84h2.376c.288 0 .546-.072.774-.216.228-.156.408-.36.54-.612a1.71 1.71 0 0 0 .216-.864c0-.324-.072-.606-.216-.846a1.394 1.394 0 0 0-.54-.576 1.419 1.419 0 0 0-.774-.216h-2.376v3.33ZM106.227 26.57V13.25h2.556v13.32h-2.556Z"
-                  fill="#2563EB"
-                ></path>
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M95.906 26.102c.636.432 1.35.648 2.142.648.444 0 .864-.066 1.26-.198a4.25 4.25 0 0 0 1.062-.558 3.78 3.78 0 0 0 .702-.668v1.244h2.574v-9.522h-2.538v1.248a3.562 3.562 0 0 0-.648-.672 3.13 3.13 0 0 0-1.026-.558 3.615 3.615 0 0 0-1.278-.216c-.828 0-1.566.216-2.214.648-.648.42-1.164 1.002-1.548 1.746-.372.732-.558 1.578-.558 2.538 0 .96.186 1.812.558 2.556.372.744.876 1.332 1.512 1.764Zm4.104-1.908c-.36.228-.78.342-1.26.342-.468 0-.882-.114-1.242-.342a2.387 2.387 0 0 1-.828-.954c-.204-.42-.306-.906-.306-1.458 0-.54.102-1.014.306-1.422.204-.408.48-.726.828-.954.36-.24.774-.36 1.242-.36.48 0 .9.12 1.26.36.36.228.636.546.828.954.204.408.306.882.306 1.422 0 .552-.102 1.038-.306 1.458a2.218 2.218 0 0 1-.828.954Z"
-                  fill="#2563EB"
-                ></path>
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="m76.322 23.197 2.595 3.373h2.268l-3.662-4.787 3.338-4.663h-2.196l-2.162 3.334-2.554-3.334h-2.34l3.652 4.71-3.634 4.74h2.196l2.5-3.373ZM62.738 26.102a3.78 3.78 0 0 0 2.142.648c.456 0 .888-.072 1.296-.216.42-.144.798-.336 1.134-.576a3.418 3.418 0 0 0 .864-.835v1.447h1.872v-9.45h-1.872v1.45a3.118 3.118 0 0 0-.72-.82 3.2 3.2 0 0 0-1.062-.612 4.033 4.033 0 0 0-1.35-.216c-.828 0-1.578.21-2.25.63-.66.42-1.188 1.002-1.584 1.746-.384.732-.576 1.572-.576 2.52 0 .936.192 1.776.576 2.52.384.744.894 1.332 1.53 1.764Zm4.122-1.476c-.432.276-.93.414-1.494.414a2.682 2.682 0 0 1-1.476-.414 2.987 2.987 0 0 1-1.008-1.134c-.24-.492-.36-1.05-.36-1.674 0-.612.12-1.158.36-1.638.252-.48.588-.858 1.008-1.134a2.682 2.682 0 0 1 1.476-.414c.564 0 1.062.138 1.494.414.432.276.768.654 1.008 1.134.252.48.378 1.026.378 1.638 0 .624-.126 1.182-.378 1.674-.24.48-.576.858-1.008 1.134Z"
-                  fill="#0F172A"
-                ></path>
-              </svg>
+              <img
+                src="/connectify.png"
+                // height="200px"
+                // width="200px"
+                className="h-24 w-28 md:h-24 md:w-52"
+                alt="Connectify"
+              />
             </NavLink>
 
-            <div class="relative w-full">
-              <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <div className="relative flex-1">
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                 <svg
-                  class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                  className="w-5 h-5 text-gray-500 dark:text-gray-400"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -75,50 +44,79 @@ export default function Navbar({ picturePath }) {
                 >
                   <path
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
                   />
                 </svg>
               </div>
               <input
                 type="search"
-                class="block w-full p-3 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="block w-full p-3 pl-10  text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Search for people, reels....."
                 required
               />
             </div>
 
-            <div className="flex items-center ml-7">
+            <div className="flex items-center ml-4 md:ml-6">
               {isLoggedIn ? (
-                <div className="flex flex-col md:flex-row items-center gap-x-5 md:gap-x-5">
+                <div className="flex items-center gap-x-2">
                   <Tooltip title="Chat">
                     <img
-                      onClick={handleLogout}
+                    
                       className="cursor-pointer"
                       type="svg"
-                      height="50px"
-                      width="50px"
+                      height="30px"
+                      width="30px"
                       src="/Message.svg"
+                      alt="Chat"
                     />
                   </Tooltip>
-                  <Tooltip title="Add Post">
-                    <img
-                      className="cursor-pointer"
-                      type="svg"
-                      height="50px"
-                      width="50px"
-                      src="/Add.svg"
-                    />
+                  <Tooltip title="Settings">
+                    <svg
+                      viewBox="0 0 24 24"
+                      height="40px"
+                      width="40px"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                      <g
+                        id="SVGRepo_tracerCarrier"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></g>
+                      <g id="SVGRepo_iconCarrier">
+                        {" "}
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M9.75195 12.0128C9.75175 11.0587 10.4087 10.2372 11.3211 10.0509C12.2335 9.86458 13.1472 10.3652 13.5034 11.2467C13.8595 12.1282 13.559 13.1449 12.7856 13.6752C12.0121 14.2054 10.9812 14.1014 10.3233 13.4268C9.95757 13.0518 9.75206 12.5432 9.75195 12.0128Z"
+                          stroke="#2563eb"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        ></path>{" "}
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M10.3077 5.46781C10.2943 4.94809 10.557 4.46185 10.9937 4.19793C11.4305 3.93402 11.9725 3.93402 12.4092 4.19793C12.8459 4.46185 13.1086 4.94809 13.0952 5.46781V6.18481C14.1532 6.45066 15.1177 7.01454 15.8798 7.81281L16.4346 7.47881C16.7552 7.28632 17.1379 7.23446 17.4962 7.33495C17.8545 7.43544 18.1583 7.6798 18.3388 8.01281C18.7238 8.70718 18.4973 9.58984 17.8288 9.99981L17.3121 10.3108C17.6296 11.4207 17.6296 12.6009 17.3121 13.7108L17.8288 14.0218C18.4996 14.4319 18.7264 15.3175 18.3388 16.0128C18.1579 16.3455 17.8541 16.5894 17.4958 16.6895C17.1375 16.7896 16.7549 16.7375 16.4346 16.5448L15.8798 16.2108C15.1177 17.01 14.1528 17.5746 13.0942 17.8408V18.5578C13.1076 19.0775 12.845 19.5638 12.4082 19.8277C11.9715 20.0916 11.4295 20.0916 10.9927 19.8277C10.556 19.5638 10.2933 19.0775 10.3067 18.5578V17.8408C9.24871 17.575 8.28422 17.0111 7.52212 16.2128L6.96735 16.5468C6.64684 16.739 6.26438 16.7907 5.90629 16.6902C5.5482 16.5897 5.24464 16.3455 5.06415 16.0128C4.67911 15.3184 4.90563 14.4358 5.57407 14.0258L6.09082 13.7148C5.77329 12.6049 5.77329 11.4247 6.09082 10.3148L5.57407 10.0038C4.90333 9.59369 4.67651 8.70808 5.06415 8.01281C5.24498 7.68014 5.54885 7.43621 5.90715 7.3361C6.26546 7.236 6.64797 7.28816 6.96832 7.48081L7.5231 7.81481C8.28484 7.01545 9.24936 6.4505 10.3077 6.18381V5.46781Z"
+                          stroke="#2563eb"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        ></path>{" "}
+                      </g>
+                    </svg>
                   </Tooltip>
                 </div>
               ) : (
-                <div className="hidden md:flex gap-x-5 md:gap-x-5">
+                <div className="hidden md:flex items-center gap-x-2">
                   <NavLink
                     to="/"
                     type="button"
-                    className="rounded-lg inline-block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900 font-semibold"
+                    className="rounded-lg inline-block px-3 py-1 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900 font-semibold"
                   >
                     Login
                   </NavLink>
@@ -126,7 +124,7 @@ export default function Navbar({ picturePath }) {
                   <NavLink
                     to="/signup"
                     type="button"
-                    className="flex items-center justify-center rounded-full py-2 px-4 text-sm font-semibold bg-blue-600 text-white hover:text-slate-100 hover:bg-blue-500"
+                    className="flex items-center justify-center rounded-full py-1 px-3 text-sm font-semibold bg-blue-600 text-white hover:text-slate-100 hover:bg-blue-500"
                   >
                     SignUp
                   </NavLink>
@@ -135,7 +133,7 @@ export default function Navbar({ picturePath }) {
             </div>
           </nav>
         </div>
-      </header>
+      </div>
     </>
     // <div>
     //   <div className="container-fluid">

@@ -78,7 +78,7 @@ const PostWidget = ({
 
   return (
     <>
-      <div className="p-5 my-6 bg-white max-w-full border border-gray-200 rounded-lg shadow dark:bg-gray-700 dark:border-gray-800 dark:hover:bg-gray-700 user-select-none">
+      <div className="p-5 my-0 bg-white max-w-full border border-gray-200 rounded-lg shadow dark:bg-gray-700 dark:border-gray-800 dark:hover:bg-gray-700 user-select-none">
       <div className="dark:text-white select-none">
       <Friend
             friendId={postUserId}
