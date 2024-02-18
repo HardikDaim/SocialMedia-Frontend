@@ -34,6 +34,11 @@ const PostWidget = ({
   const isLiked = likes ? Boolean(likes[loggedInUserId]) : false;
   const likeCount = likes ? Object.keys(likes).length : 0;
   const [comments, setComments] = useState(initialComments || []);
+  const [showMore, setShowMore] = useState(false);
+
+  const toggleShowMore = () => {
+    setShowMore(!showMore);
+  };
 
   const patchLike = async () => {
     const response = await fetch(`http://localhost:4000/posts/${postId}/like`, {
@@ -79,65 +84,76 @@ const PostWidget = ({
   return (
     <>
       <div className="p-5 my-0 bg-white max-w-full border border-gray-200 rounded-lg shadow dark:bg-gray-700 dark:border-gray-800 dark:hover:bg-gray-700 user-select-none">
-      <div className="dark:text-white select-none">
-      <Friend
+        <div className="dark:text-white select-none">
+          <Friend
             friendId={postUserId}
             name={name}
             subtitle={location}
             userPicturePath={userPicturePath}
             postId={postId}
           />
-      </div>
-      <div className="m-4 dark:text-white select-none">{description}</div>
-      {picturePath && (
-        <img
-          width="100%"
-          height="100%"
-          alt="Post"
-          className="rounded-lg mt-2"
-          src={`http://localhost:4000/assets/${picturePath}`}
-        />
-      )}
-      <div className="mt-4">
-        <div className="grid grid-cols-5">
-          <div>
-            <IconButton onClick={patchLike}>
-              <div className="dark:text-white">
-                {isLiked ? <FavoriteOutlined /> : <FavoriteBorderOutlined />}
-              </div>
-              <div className="dark:text-white text-2xl ml-2">{likeCount}</div>
-            </IconButton>
-          </div>
-          <div>
-            <IconButton onClick={() => setIsComments(!isComments)}>
-              <div className="dark:text-white">
-                <ChatBubbleOutlineOutlined />
-              </div>
-              <div className="dark:text-white text-2xl ml-2">
-                {comments ? comments.length : 0}
-              </div>
-            </IconButton>
-          </div>
-          <div>
-            <IconButton>
-              <div className="dark:text-white">
-                <ShareOutlined />
-              </div>
-              <div className="dark:text-white text-2xl ml-2">
-                {comments ? comments.length : 0}
-              </div>
-            </IconButton>
-          </div>
-          <div className="col-span-2">
-          <input
-            type="text"
-            className="w-full rounded-full p-4 bg-gray-100 dark:bg-gray-800"
-            placeholder="Write your Comment"
-          ></input>
+        </div>
+        <div
+          className="my-4 dark:text-white "
+          style={{ whiteSpace: "pre-line" }}
+        >
+          {showMore ? description : `${description.slice(0, 100)}...`}
+          <span
+            className="cursor-pointer text-blue-500 font-medium"
+            onClick={toggleShowMore}
+          >
+            {showMore ? "show less" : "show more"}
+          </span>
+        </div>
+        {picturePath && (
+          <img
+            width="100%"
+            height="100%"
+            alt="Post"
+            className="rounded-lg mt-2"
+            src={`http://localhost:4000/assets/${picturePath}`}
+          />
+        )}
+        <div className="mt-4">
+          <div className="grid grid-cols-5">
+            <div>
+              <IconButton onClick={patchLike}>
+                <div className="dark:text-white">
+                  {isLiked ? <FavoriteOutlined /> : <FavoriteBorderOutlined />}
+                </div>
+                <div className="dark:text-white text-2xl ml-2">{likeCount}</div>
+              </IconButton>
+            </div>
+            <div>
+              <IconButton onClick={() => setIsComments(!isComments)}>
+                <div className="dark:text-white">
+                  <ChatBubbleOutlineOutlined />
+                </div>
+                <div className="dark:text-white text-2xl ml-2">
+                  {comments ? comments.length : 0}
+                </div>
+              </IconButton>
+            </div>
+            <div>
+              <IconButton>
+                <div className="dark:text-white">
+                  <ShareOutlined />
+                </div>
+                <div className="dark:text-white text-2xl ml-2">
+                  {comments ? comments.length : 0}
+                </div>
+              </IconButton>
+            </div>
+            <div className="col-span-2">
+              <input
+                type="text"
+                className="w-full rounded-full p-4 bg-gray-100 dark:bg-gray-800"
+                placeholder="Write your Comment"
+              ></input>
+            </div>
           </div>
         </div>
       </div>
-    </div>
       {/* <WidgetWrapper m="2rem 0">
         <Friend
           friendId={postUserId}

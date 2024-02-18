@@ -32,6 +32,7 @@ export default function Profile  ()  {
 
   return (
     <>
+    <div className="dark:bg-gray-900">
       <Box>
         <Navbar />
         <Box
@@ -59,6 +60,7 @@ export default function Profile  ()  {
       <div>
         <Footer />
       </div>
+    </div>
     </>
   );
 };

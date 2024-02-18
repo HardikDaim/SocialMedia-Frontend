@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "../../state/index.js";
 import PostWidget from "./PostWidget";
+import Lottie from "react-lottie";
+import NoData from '../../animations/NoData.json'
 
 const PostsWidget = ({ userId, isProfile = false }) => {
   const dispatch = useDispatch();
@@ -43,6 +45,15 @@ const PostsWidget = ({ userId, isProfile = false }) => {
     }
   };
 
+  const lottieOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: NoData,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice',
+    },
+  };
+
   useEffect(() => {
     if (isProfile) {
       getUserPosts();
@@ -53,31 +64,38 @@ const PostsWidget = ({ userId, isProfile = false }) => {
 
   return (
     <>
-      {posts.map(
-        ({
-          _id,
-          userId,
-          firstName,
-          lastName,
-          description,
-          location,
-          picturePath,
-          userPicturePath,
-          likes,
-          comments,
-        }) => (
-          <PostWidget
-            key={_id}
-            postId={_id}
-            postUserId={userId}
-            name={`${firstName} ${lastName}`}
-            description={description}
-            location={location}
-            picturePath={picturePath}
-            userPicturePath={userPicturePath}
-            likes={likes}
-            comments={comments}
-          />
+      {posts.length === 0 ? (
+        <>
+        <p className="text-2xl flex justify-center leading-6 dark:text-white font-medium pt-2 ">Add Friends or Create New Post </p>
+        <Lottie options={lottieOptions} height={400} width={400} />
+        </>
+      ) : (
+        posts.map(
+          ({
+            _id,
+            userId,
+            firstName,
+            lastName,
+            description,
+            location,
+            picturePath,
+            userPicturePath,
+            likes,
+            comments,
+          }) => (
+            <PostWidget
+              key={_id}
+              postId={_id}
+              postUserId={userId}
+              name={`${firstName} ${lastName}`}
+              description={description}
+              location={location}
+              picturePath={picturePath}
+              userPicturePath={userPicturePath}
+              likes={likes}
+              comments={comments}
+            />
+          )
         )
       )}
     </>

@@ -36,7 +36,7 @@ const FriendListWidget = ({ userId }) => {
         </div>
         <hr className="border border-gray-300 dark:border-gray-600 "></hr>
         {friends && friends.length > 0 ? (
-          <div className="flex flex-col gap-4 mt-4 dark:text-white select-none">
+          <div className="flex flex-col gap-4 my-4 dark:text-white select-none">
             {friends.map((friend) => (
               <Friend
                 key={friend._id}

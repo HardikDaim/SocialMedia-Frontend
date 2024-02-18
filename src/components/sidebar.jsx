@@ -11,10 +11,10 @@ export default function Sidebar() {
     navigate("/");
   };
   return (
-    <div className="hidden lg:block">
+    <div className="hidden lg:block ">
       <aside
         id="separator-sidebar"
-        className=" sticky top-0 overflow-y-auto shadow-lg border rounded-lg bg-white right-0 z-40 w-80 h-screen transition-transform -translate-x-full sm:translate-x-0"
+        className=" sticky top-0 overflow-y-auto shadow-lg border dark:border-gray-700 rounded-lg bg-white right-0 z-40 w-80 h-screen transition-transform -translate-x-full sm:translate-x-0"
         aria-label="Sidebar"
       >
         <div className="h-full px-3 py-4 overflow-y-auto bg-white dark:bg-gray-800">

@@ -85,8 +85,8 @@ const Friend = ({ friendId, name, subtitle, userPicturePath, postId }) => {
     setOpen(false);
   };
   return (
-    <FlexBetween>
-      <FlexBetween
+    <FlexBetween >
+      <FlexBetween className="mb-2"
         onClick={() => {
           navigate(`/profile/${friendId}`);
           navigate(0);

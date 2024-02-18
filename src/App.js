@@ -13,14 +13,17 @@ import About from "./screens/about";
 import Services from "./screens/services";
 import Contact from "./screens/contact";
 import Profile from "./screens/profile";
+import NotFound from "./screens/notFound";
 import { useSelector } from "react-redux";
 import NewPost from "./components/newPost";
 import { Bounce, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Search from "./components/search";
 
 function App() {
   const isLoggedIn = useSelector((state) => state.token !== null);
   const [locationKey, setLocationKey] = useState(null);
+  
 
   useEffect(() => {
     setLocationKey(Date.now());
@@ -48,6 +51,7 @@ function App() {
           />
           <Route path="/signup" element={<Signup />} />
           <Route path="/newPost" element={<NewPost />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </TransitionRoutes>
     </Router>

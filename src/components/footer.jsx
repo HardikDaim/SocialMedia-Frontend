@@ -11,7 +11,7 @@ export default function Footer() {
               height="200px"
               width="200px"
               alt="Connectify"
-           
+           className=" cursor-pointer"
             />
             <nav className="my-10 text-sm" aria-label="quick-links">
               <div className="flex justify-center gap-x-6 mb-6">

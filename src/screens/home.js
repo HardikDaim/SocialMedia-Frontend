@@ -17,6 +17,7 @@ export default function Home() {
 
   return (
     <>
+    <div className="dark:bg-gray-800 scroll-smooth">
       <div className="sticky top-0">
         <Navbar />
         <div className="absolute">
@@ -34,6 +35,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+    </div>
 
       {/* <div className="hidden lg:block right-0 top-0 z-40">
         <UserWidget userId={_id} picturePath={picturePath} />

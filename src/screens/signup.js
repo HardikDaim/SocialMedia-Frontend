@@ -107,14 +107,14 @@ export default function Signup() {
     <>
     <ToastContainer  />
       <Navbar />
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 dark:bg-gray-900">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
             className="mx-auto  w-auto"
             src="/connectify.png"
             alt="Connectify"
           />
-          <h2 className=" text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+          <h2 className=" text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 dark:text-white">
             Create your account
           </h2>
         </div>
@@ -122,7 +122,7 @@ export default function Signup() {
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
-              <label htmlFor='text' className="block text-sm font-medium leading-6 text-gray-900">
+              <label htmlFor='text' className="block text-sm font-medium leading-6 text-gray-900 dark:text-white">
                 First Name
               </label>
               <div className="mt-2">
@@ -133,12 +133,12 @@ export default function Signup() {
                   value={credentials.firstName}
                   onChange={onChange}
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 p-1.5 caret-blue-500 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
             <div>
-              <label htmlFor='text' className="block text-sm font-medium leading-6 text-gray-900">
+              <label htmlFor='text' className="block text-sm font-medium leading-6 text-gray-900 dark:dark:text-white">
                 Last Name
               </label>
               <div className="mt-2">
@@ -149,12 +149,12 @@ export default function Signup() {
                   value={credentials.lastName}
                   onChange={onChange}
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 p-1.5 caret-blue-500 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
             <div>
-              <label htmlFor='text' className="block text-sm font-medium leading-6 text-gray-900">
+              <label htmlFor='text' className="block text-sm font-medium leading-6 text-gray-900 dark:text-white">
                 Location
               </label>
               <div className="mt-2">
@@ -165,12 +165,12 @@ export default function Signup() {
                   value={credentials.location}
                   onChange={onChange}
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 p-1.5 caret-blue-500 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
             <div>
-              <label htmlFor='text' className="block text-sm font-medium leading-6 text-gray-900">
+              <label htmlFor='text' className="block text-sm font-medium leading-6 text-gray-900 dark:text-white">
                 Occupation
               </label>
               <div className="mt-2">
@@ -181,11 +181,11 @@ export default function Signup() {
                   value={credentials.occupation}
                   onChange={onChange}
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 p-1.5 caret-blue-500 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
-            <label htmlFor='file' className="block text-sm font-medium leading-6 text-gray-900">
+            <label htmlFor='file' className="block text-sm font-medium leading-6 text-gray-900 dark:text-white">
               Profile Photo
             </label>
             <Box
@@ -210,7 +210,7 @@ export default function Signup() {
                   >
                     <input {...getInputProps()} />
                     {!credentials.picture ? (
-                      <p>Add Profile Picture Here</p>
+                      <p className='dark:text-white'>Add Profile Picture Here</p>
                     ) : (
                       <div>
                         <Typography>{credentials.picture.name}</Typography>
@@ -222,7 +222,7 @@ export default function Signup() {
               </Dropzone>
             </Box>
             <div>
-              <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+              <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900 dark:text-white">
                 Email address
               </label>
               <div className="mt-2">
@@ -234,13 +234,13 @@ export default function Signup() {
                   onChange={onChange}
                   autoComplete="email"
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 p-1.5 caret-blue-500 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
             <div>
               <div className="flex items-center justify-between">
-                <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+                <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900 dark:text-white">
                   Password
                 </label>
                 <div className="text-sm">
@@ -258,7 +258,7 @@ export default function Signup() {
                   onChange={onChange}
                   autoComplete="current-password"
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 p-1.5 caret-blue-500 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -269,7 +269,7 @@ export default function Signup() {
               >
                 Create Now
               </button>
-              <p className='block text-sm font-medium leading-6 text-gray-900 py-2'>Already have an account?<Link to="/" className='font-semibold text-blue-600'> Log in now</Link></p>
+              <p className='block text-sm font-medium leading-6 text-gray-900 py-2 dark:text-white'>Already have an account?<Link to="/" className='font-semibold text-blue-600'> Log in now</Link></p>
             </div>
           </form>
           <p className="mt-5 mb-3 text-body-secondary flex justify-center">© {currentYear}, All rights reserved</p>
